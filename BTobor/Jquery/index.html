@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>jQuery Demo</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>jQuery Demo</h1>
+
+    <h2>1. Lista z ukrywaniem</h2>
+    <button id="toggleBtn">Pokaz/Ukryj liste</button>
+    <ul id="myList">
+        <li>Element 1</li>
+        <li>Element 2</li>
+        <li>Element 3</li>
+    </ul>
+
+    <h2>2. Formularz z walidacja</h2>
+    <form id="myForm">
+        <div>
+            <label>Imie:</label>
+            <input type="text" id="name">
+            <span id="nameError" class="error"></span>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input type="text" id="email">
+            <span id="emailError" class="error"></span>
+        </div>
+        <button type="submit">Wyslij</button>
+    </form>
+
+    <h2>3. Ladowanie danych</h2>
+    <button id="loadData">Zaladuj dane</button>
+    <div id="results"></div>
+
+    <script type="text/javascript">
+        $("#toggleBtn").click(function () {
+            $("#myList").toggle(500);
+        });
+
+        $("#myForm").submit(function () {
+            var pattern = /[\w-]+@gmail\.com/
+            var bol = pattern.test($("#email").val())
+            if ($("#name").val() == "") {
+                alert("Pole nie jest puste");
+            }
+            if (!bol) {
+                alert("Żle wprowadzono");
+            }
+        });
+        $("#loadData").click(function () {
+            $("#results").append($("#name").val() + "<br />");
+            $("#results").append($("#email").val() + "<br />");
+        });
+
+    </script>
+</body>
+
+</html>
