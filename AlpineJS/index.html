@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <title>Document</title>
+    <style>
+        [x-clock] {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- x-cloak - kiedy słaby internet aby nie mrugneło -->
+    <script type="text/javascript"></script>
+
+    <div x-data="{
+        count: 0,
+        message: null,
+        //Metoda zwiększająca licznik
+        increment(){
+            this.count++;
+        }
+        }">
+        <!--<button x-bind:disabled="count === 0">Zmniejsz</button>
+         Skrócona wersja -->
+        <div>
+            <span x-text="count"></span>
+            <button @click="increment()">+</button>
+        </div>
+
+
+        <button :disabled="count === 0" @click="count--">Zmniejsz</button>
+
+        <!--  <button x-on:click="count++">Zwiększ</button>
+            Skrócona wersja -->
+        <button @click="count++">Zwiększ</button>
+
+        <p x-text="'Aktualna wartość: ' + count"></p>
+
+        <div x-html="'<strong>Licznik:</strong> ' + count"></div>
+
+        <div x-show="count > 0">Masz jakieś punkty!</div>
+
+        <template x-if="count > 5">
+            <div>Gratulacje! Masz więcej niż 5 punktów</div>
+        </template>
+
+        <template x-for="n in count" :key="n">
+            <div x-text="'Element ' + n"></div>
+        </template>
+
+        <input type="text" x-model="message">
+        <p x-text="message"></p>
+
+        <div x-data="{ message: 'Ładowanie...' }"
+            x-init="setTimeout(() => { message = 'Witaj w aplikacji Alpine.JS!'}, 1000)">
+            <div x-text="message"></div>
+        </div>
+
+        <div x-data>
+            <input type="text" x-ref="inputField">
+            <button @click="$refs.inputField.focus()">Ustaw fokus</button>
+            <button @click="$refs.inputField.value = 'Wypełniona wartość'">Wypełnij</button>
+        </div>
+    </div>
+
+    <div class="card shadow" :class="{'active': isActive}">
+        Element ma zawsze clase "card" i "shadow",
+        a dodatkowo "active" gdy isActive = true
+    </div>
+
+    <span x-cloak x-show="false">To nie "mignie" na ekranie w żadnym momencie</span>
+</body>
+
+</html>

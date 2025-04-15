@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista zadań</title>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            margin: 4px 0;
+        }
+
+        .task-item.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 70%;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Moja lista zadań</h1>
+
+        <!-- 
+      TWOJE ZADANIE:
+      Uzupełnij poniższy kod używając Alpine.JS
+    -->
+
+        <div x-data="{ 
+            tasks: [],
+            newTask: '',
+            addTask() {
+                if (this.newTask.trim() !== '') {
+                this.tasks.push({ text: this.newTask, completed: false });
+                this.newTask = '';
+                }
+                }
+    }">
+            <!-- Formularz dodawania zadań -->
+            <div>
+                <input type="text" x-model="message">
+                <button x-on:click="addTask()">Kliknij</button>
+            </div>
+
+            <!-- Lista zadań -->
+            <div>
+                <template x-for="(task, index) in tasks" :key="index">
+                    <li>
+                        <span x-text="index + ': '"></span>
+                        <span x-text="task"></span>
+                    </li>
+                </template>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
